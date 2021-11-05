@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Master cloud apps TFM AWS CloudFormation stack
+
+Parameters:
+  DBPassword:
+    Description: Database password
+    Type: String
+    NoEcho: true
+    MinLength: 8
+
+Resources:
+  # Security groups
+  RDSAppSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: tfm-rds-instance-3306
+      GroupDescription: "SG for RDS: Allow connections from everywhere"
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '3306'
+        ToPort: '3306'
+        CidrIp: 0.0.0.0/0
+
+  # RDS Instance
+  RDSInstance:
+    Type: AWS::RDS::DBInstance
+    DeletionPolicy: Delete
+    Properties:
+      DBInstanceClass: db.t2.micro
+      AllocatedStorage: 10
+      AllowMajorVersionUpgrade: false
+      AutoMinorVersionUpgrade: false
+      DBInstanceIdentifier: tfmrdsinstance
+      DBName: users
+      Engine: mysql
+      EngineVersion: 8.0
+      MasterUsername: tfmDbUsername
+      MasterUserPassword: !Ref DBPassword
+      MultiAZ: false
+      PubliclyAccessible: true
+      EnableIAMDatabaseAuthentication: true
+      StorageEncrypted: false
+      VPCSecurityGroups:
+      - !GetAtt RDSAppSecurityGroup.GroupId
+
+Outputs:
+  RDSEndpointAndPort:
+    Value:
+      !Join
+      - ''
+      - - !GetAtt RDSInstance.Endpoint.Address
+        - ':'
+        - !GetAtt RDSInstance.Endpoint.Port
+    Description: "TFM RDS Endpoint and port"
