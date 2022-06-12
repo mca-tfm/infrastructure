@@ -28,7 +28,14 @@ Project is composed by the next modules:
 * **cloud**: contains docker files
   * **aws**:
     * **cloudFormation**: 
-      * **tfm-stack.yml**: clouyd formation stack template to create necessary AWS resources for the TFM project.
+      * **tfm-stack.yml**: cloud formation stack template to create necessary AWS resources for the TFM project.
+* **docs**: folder with TFM project documentation.
+  * **demo**: demo resources.
+  * **LICENSE**: Creative Commons Attribution Share-Alike license.
+  * **memory.docx**: editable memory document.
+  * **memory.pdf**: editable memory document.
+  * **slides.key**: slides in key format.
+  * **memory.pdf**: slides in pptx format.
 * **LICENSE**: Apache 2 license file.
 * **README.md**: this file.
 
