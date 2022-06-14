@@ -13,9 +13,17 @@
 
 ## Description
 This is the Master cloud apps TFM infrastructure repository.
-It contains the necessary infrastructure resources to deploy TFM project:
-* MySQL instance for [Users API](https://github.com/mca-tfm/users).
-* Dynamodb tables for [Products API](https://github.com/mca-tfm/products).
+
+This repo contains:
+* References to all the used repos to perform the TFM:
+  * [Users API](https://github.com/mca-tfm/users).
+  * [Products API](https://github.com/mca-tfm/products).
+  * [Purchases API](https://github.com/mca-tfm/purchases)
+  * [Api Gateway](https://github.com/mca-tfm/api-gateway).
+* Necessary infrastructure resources to deploy TFM project:
+  * MySQL instance for [Users API](https://github.com/mca-tfm/users) and [Purchases API](https://github.com/mca-tfm/purchases).
+  * Dynamodb tables for [Products API](https://github.com/mca-tfm/products).
+* [TFM documentation](./docs).
 
 ## Requirements
 No necessary requirements.
